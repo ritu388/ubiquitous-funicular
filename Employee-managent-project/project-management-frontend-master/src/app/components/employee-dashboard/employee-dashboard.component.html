@@ -1,0 +1,110 @@
+<div style="background-color: beige">
+    <!-- <hr style="width:100%;margin-left:0;margin-top:4rem">
+    <h2 style="text-align: center;" >All Projects</h2>
+    <hr style="width:100%;margin-left:0"> -->
+
+
+    <div class="container">
+        <div class="row justify-content-around">
+            
+             <div *ngFor="let task of allTask;let i=index" class="card border border-info mb-5 shadow p-3  bg-white rounded " style="width:18rem ">
+                  <div class="card-body">
+                    <h4 class="card-title text-primary" style="text-align: center;">{{i+1}}  </h4>
+                   
+                    <h6>Task:</h6><h6 class="card-text" class="text-muted">{{task.task}}</h6>
+                    <h6>Deadline: {{task.deadline}}days</h6>
+                    <h6>Progress:
+                        <div class="progress" style="margin-bottom: 1rem;margin-top: 0.5rem;">
+                            <div class="progress-bar bg-success" role="progressbar"[style.width]="task.status + '%'" >{{task.status}}%</div>
+                          </div>
+                    </h6>
+                     <button type="button" class="btn btn-primary mr-2"data-toggle="modal" data-target="#updateSatus" (click)="currentTaskId(task.projectId)">Update Status</button>
+                                  
+             </div>
+
+                    
+        </div>
+    </div>
+
+</div>
+
+
+<div>
+    <div class="modal fade  " id="updateSatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+  
+      <div class="modal-dialog modal-dialogScss" role="document">
+        <div class="modal-content ">
+  
+          <div class="modal-header">
+  
+            <h5 class="modal-title" id="exampleModalLabel">Update Status</h5>
+  
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+  
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">project Id:</label>
+                <input type="text" class="form-control" [(ngModel)]="taskId" name="getemployeeId"  readonly>
+              </div>
+
+  
+  
+              <div class="form-group">
+                <input id="number" class="form-control " id="inputStatus" type="number" [(ngModel)]="status"
+                  name="input3" placeholder="What is project's status(%)?" />
+              </div>
+  
+            </form>
+          </div>
+  
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="updateStatus()">Update</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Data -->
+
+  <div class="container mt-5"> 
+    <div class="text-end" style="text-align: end;">
+      <button type="button" class="btn btn-primary text-center mt-5 mb-2" (click)="redirectForm('add')">Add</button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="color:black">#</th>
+          <th scope="col" style="color:black"><span>Project ID</span></th>
+          <th scope="col" style="color:black"><span>Employee NAME</span></th>
+          <th scope="col" style="color:black"><span>Email ID</span></th>
+          <th scope="col" style="color:black"><span>Vendor</span></th>
+          <th scope="col" style="color:black"><span>Status</span></th>
+          <th scope="col" style="color:black"><span>ACTIONS</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of List; let i = index">
+          <th scope="row"> {{i + 1}} </th>
+          <td style="color:green">{{data?.projectId}}</td>
+          <td> {{data?.Name}} </td>
+          <td> {{data?.EmailID}} </td>
+          <td> {{data?.Vendor}} </td>
+          <td> {{data?.status}} </td>
+          <td>
+              <button type="button" class="btn btn-outline-primary mt-1 mr-1" 
+              (click)="redirectToEdit('view', data?._id)">View</button>
+              <button type="button" class="btn btn-outline-success mt-1 mr-1" *ngIf="data?.status === 'Draft'" 
+              (click)="redirectToEdit('edit', data?._id)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

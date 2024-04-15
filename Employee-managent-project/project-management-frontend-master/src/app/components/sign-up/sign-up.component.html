@@ -1,0 +1,52 @@
+<div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-1 rounded-lg " style="margin-top: 4rem;">
+                    <div class="card-header py-1">
+                        <h2 class="text-center font-weight-light ">Create Account</h2>
+                    </div>
+                    <div class="card-body">
+
+                        <form>
+                            <div class="form-group">
+                                <label class="small mb-1 mt-0" for="inputName">Name</label>
+                                <input class="form-control py-3" [(ngModel)]="Name"  [ngModelOptions]="{standalone: true}"
+                                 name="inputFirstName" id="Name" type="text" placeholder="Enter name" />
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                <input class="form-control py-3" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"
+                                 name="inputEmail" id="inputEmailAddress" type="email" aria-describedby="emailHelp"
+                                 placeholder="Enter email address" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="small mb-1" for="inputPassword">Password</label>
+                                <input class="form-control py-3" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"name="inputPassword"
+                                    id="inputPassword" type="password" placeholder="Enter password" />
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1" for="inputSelect">Department</label>
+                                <select class="form-select form-control" [(ngModel)]="role" [ngModelOptions]="{standalone: true}"
+                                aria-placeholder="Select Department">
+                                    <option value="Hr">HR</option>
+                                    <option value="Manager">Manager</option>
+                                  </select>
+                            </div>
+
+
+                            <div class="form-group mt-0 mb-0"><a class="btn btn-primary btn-block"
+                                (click)="signUpFunction()">Create Account</a></div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center py-1 mt-0">
+                        <div class="small"><a [routerLink]="['']">Have an account? Go to login</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
